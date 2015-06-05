@@ -97,4 +97,29 @@ class IndexController extends Controller {
         }
     }
 
+    public function calculate() {
+        if (IS_POST) {
+            
+        } else {
+            $where = array(
+                'active' => 1,
+                'status' => 0,
+            );
+            $min_info = $this->note->where($where)->order('note_id ASC')->find();
+            $max_info = $this->note->where($where)->order('note_id DESC')->find();
+            $this->assign(array(
+                'min_id' => $min_info['note_id'],
+                'max_id' => $max_info['note_id'],
+                'min' => $this->getCalculateOutputData($min_info),
+                'max' => $this->getCalculateOutputData($max_info),
+                'content_name' => 'AA计算',
+            ));
+            $this->display();
+        }
+    }
+
+    private function getCalculateOutputData($data) {
+        return '详细: ' . $data['note_id'] . ' | ' . $data['money'] . ' | ' . $data['spending_time'] . ' | ' . $data['user_name'] . ' | ' . $data['scope_user_names'] . ' | ' . $data['remark'];
+    }
+
 }

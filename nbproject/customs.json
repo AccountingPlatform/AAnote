@@ -1,0 +1,22 @@
+{
+    "elements": {
+        "extend": {
+            "attributes": {
+                "name": {}
+            }
+        },
+        "block": {
+            "attributes": {
+                "name": {}
+            }
+        }
+    },
+    "attributes": {
+        "field": {
+            "context": "th"
+        },
+        "plain": {
+            "context": "a"
+        }
+    }
+}

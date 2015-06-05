@@ -1,0 +1,52 @@
+<extend name="Application/Common/View/common.html" />
+<block name="body">
+    <div class="easyui-panel"  style="width:700px">
+        <div style="padding:10px 60px 20px 60px">
+            <form id="ff"  method="post">
+                <table cellpadding="5">
+                    <tr>
+                        <td>开始:</td>
+                        <td>
+                            <input class="easyui-textbox" type="text"  id="min_id"  name="min_id"  style="width:50px"  readonly />
+                            <input class="easyui-textbox" type="text"  id="min"  name="min"  style="width:500px" readonly />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>结束:</td>
+                        <td>
+                            <input class="easyui-textbox" type="text"  id="max_id"  name="max_id" style="width:50px"  readonly />
+                            <input class="easyui-textbox" type="text" id="max" name="max"    style="width:500px" readonly />
+                        </td>
+                    </tr>
+                </table>
+            </form>
+            <div style="text-align:center;padding:5px">
+                <a href="javascript:void(0)" class="easyui-linkbutton" onclick="submitForm()">提交计算</a>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function () {
+            $('#ff').form({
+                url: '/Home/Index/calculate.html',
+                onSubmit: function () {
+
+                },
+                success: function (data) {
+                    window.history.back(-1);
+                }}
+            );
+            $('#ff').form('load', {
+                min: '{$min}',
+                max: '{$max}',
+                min_id: '{$min_id}',
+                max_id: '{$max_id}'
+            });
+        });
+        function submitForm() {
+            $('#ff').form('submit');
+        }
+    </script>
+</block>
