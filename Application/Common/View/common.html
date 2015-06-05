@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title><if condition="isset($title_name)">{$title_name}<else />AAnote</if></title>
+        <link rel="stylesheet" type="text/css" href="__EASYUI__/themes/default/easyui.css">
+        <link rel="stylesheet" type="text/css" href="__EASYUI__/themes/icon.css">
+        <link rel="stylesheet" type="text/css" href="__EASYUI__/demo/demo.css">
+    <block name="style"></block>
+    <script type="text/javascript" src="__EASYUI__/jquery.min.js"></script>
+    <script type="text/javascript" src="__EASYUI__/jquery.easyui.min.js"></script>
+    <block name="head_script"></block>
+</head>
+<body class="easyui-layout">
+    <block name="left"><include file="Application/Common/View/left.html" /></block>
+    <div id="content" region="center" title='<if condition="isset($content_name)">{$content_name}<else />列表栏</if>' style="padding:5px;">
+        <block name="body"></block>
+    </div>
+<block name="script"></block>
+</body>
+</html>

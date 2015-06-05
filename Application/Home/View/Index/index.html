@@ -1,0 +1,56 @@
+<extend name="Application/Common/View/common.html" />
+<block name="body">
+    <table id="dg"  class="easyui-datagrid" 
+           url="/Home/Index/index.html"
+           toolbar="#toolbar" pagination="true"
+           rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+            <tr>
+                <th field="note_id" width="10">记录ID</th>
+                <th field="money" width="20">金额</th>
+                <th field="spending_time" width="50">消费时间</th>
+                <th field="user_name" width="50">消费人</th>
+                <th field="scope_user_names" width="50">受众范围</th>
+                <th field="remark" width="50">备注</th>
+                <th field="create_time" width="50">创建时间</th>
+                <th field="update_time" width="50">更新时间</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="/Home/Index/add.html" class="easyui-linkbutton" iconCls="icon-add" plain="true" >添加</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="edit()">编辑</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="del()">删除</a>
+    </div>
+
+</block>
+<block name="script">
+    <script type="text/javascript">
+        $(function () {
+
+        });
+        function del() {
+            $.messager.confirm('确认框', '确认删除此记录?', function (r) {
+                var row = $('#dg').datagrid('getSelected');
+                if (row != null) {
+                    $.ajax({
+                        type: 'POST',
+                        url: ' /Home/Index/del.html',
+                        data: {
+                            note_id: row.note_id,
+                        },
+                        success: function (data) {
+                            $("#dg").datagrid("reload")
+                        },
+                    });
+                }
+            });
+        }
+        function edit() {
+                var row = $('#dg').datagrid('getSelected');
+                if (row != null) {
+                   window.location.href=' /Home/Index/edit.html?note_id='+row.note_id;
+                }
+        }
+    </script>
+</block>
